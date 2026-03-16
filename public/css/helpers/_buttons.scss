@@ -1,0 +1,61 @@
+.btn {
+  @apply px-2 py-1 rounded-[5px] transition-all;
+}
+.btn-normal {
+  @apply btn bg-dark dark:bg-light hover:bg-dark/80 dark:hover:bg-bglight text-white dark:text-dark;
+}
+.btn-prime {
+  @apply btn text-light bg-prime hover:bg-prime/80;
+}
+.btn-danger {
+  @apply btn text-light bg-danger hover:bg-danger/80;
+}
+.btn-success {
+  @apply btn text-light bg-success hover:bg-success/80;
+}
+
+.outlining {
+  @apply btn outline hover:outline-none text-dark dark:text-light;
+}
+
+.btn-outline {
+  @apply outlining hover:text-light dark:hover:text-dark hover:bg-dark dark:hover:bg-light;
+}
+.btn-outline-prime {
+  @apply outlining outline-prime hover:bg-prime;
+}
+.btn-outline-danger {
+  @apply outlining outline-danger hover:bg-danger;
+}
+.btn-outline-success {
+  @apply outlining outline-success hover:bg-success;
+}
+.btn-ui {
+  @apply btn hover:bg-light dark:hover:bg-lightdark;
+}
+.btn-ui-blur {
+  @apply btn text-dark/80 dark:text-bglight/80 hover:text-darker dark:hover:text-light;
+}
+.btn-ui-silver {
+  @apply btn bg-light dark:bg-middark hover:bg-bglight/50 dark:hover:bg-lightdark/60;
+}
+.btn-ui-radio {
+  @apply btn bg-bglight dark:bg-darker hover:bg-bglight/50 dark:hover:bg-lightdark/60;
+}
+.btn-ui-radio-active {
+  @apply bg-lightdark/30 dark:bg-lightdark;
+}
+
+.buttonRow {
+  @apply flex flex-row items-center gap-1;
+}
+
+.btn-accent {
+  @apply btn text-dark font-medium bg-accent hover:bg-accent/80 drop-shadow;
+}
+.btn-accent-outline {
+  @apply btn text-accent font-medium border border-accent rounded-none drop-shadow;
+}
+.btn-prime-outline {
+  @apply btn text-prime font-medium border border-prime rounded-none drop-shadow;
+}

@@ -1,0 +1,122 @@
+/* @use "./helpers/statics";
+@use "./helpers/buttons";
+@use "./helpers/components";
+
+// Variables :
+$dark: #282828;
+$darker: #181818;
+$middark: #212121;
+$lightdark: #444746;
+$light: #fcfcfc;
+$bgLight: #eaeaea;
+$success: #198754;
+$danger: #dc3545;
+$prime: #0d6efd;
+$money: #28b530;
+$accent: #6ee154;
+
+::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.heading {
+  @apply text-size-3 capitalize font-semibold;
+}
+
+.navbar {
+  @apply pad bg-light dark:bg-darker flex flex-row justify-between items-center drop-shadow-sm select-none sticky top-0 z-10;
+}
+
+.statDiv {
+  @apply bg-light dark:bg-middark w-[200px] h-[120px] px-4 py-2 rounded-[10px] flex flex-col relative;
+  p {
+    @apply text-size-2 font-bold self-center;
+  }
+  i {
+    @apply absolute bottom-[8px] right-[20px] text-[30px];
+  }
+}
+
+.input {
+  @apply p-2 bg-light dark:bg-darker drop-shadow rounded-[6px] text-size-5 focus-within:outline-none;
+  &::placeholder {
+    @apply opacity-70 text-[14px] text-lightdark dark:text-bglight/75 capitalize text-size-5;
+  }
+}
+.input-invert {
+  @apply p-2 bg-bglight dark:bg-dark drop-shadow rounded-[6px] text-size-5 focus-within:outline-none;
+  &::placeholder {
+    @apply opacity-70 text-[14px] text-lightdark dark:text-bglight/75 capitalize text-size-5;
+  }
+}
+
+.before-rabon::before {
+  content: "";
+  @apply absolute -left-4 top-0 w-[3px] h-full bg-success;
+}
+
+.form {
+  @apply w-fit p-8 flex flex-col gap-4 items-center drop-shadow rounded-lg;
+}
+
+.dropdown {
+  @apply w-[100px] h-fit flex flex-col p-2 absolute top-[60px] bg-light drop-shadow dark:bg-middark;
+}
+
+#table td,
+#table th {
+  padding: 0.5rem;
+  border: 1px solid $accent;
+}
+#table.normal-table td,
+#table.normal-table th {
+  padding: 0.5rem;
+  border: 1px solid $lightdark;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.rate-green {
+  color: rgb(34 197 94);
+}
+.rate-cyan {
+  color: rgb(6 182 212);
+}
+.rate-yellow {
+  color: rgb(234 179 8);
+}
+.rate-orange {
+  color: rgb(249 115 22);
+}
+.rate-red {
+  color: rgb(239 68 68);
+}
+
+@keyframes shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.golden-glass {
+  display: flex !important;
+  background: linear-gradient(135deg, #fff700, #ffb800, #ffd700);
+  background-size: 200% 200%;
+  animation: shine 3s linear infinite;
+  backdrop-filter: blur(10px);
+  box-shadow: 0px 0px 5px rgba(255, 215, 0, 0.5);
+  @apply p-2 flex-row rounded-lg gap-4;
+}
+ *//*# sourceMappingURL=globals.css.map */
