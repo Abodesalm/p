@@ -1,14 +1,14 @@
 "use server";
 
 import { sessionOptions, SessionData, defaultSession } from "@/lib/lib";
-import { login_api, signup_api } from "@/public/data";
+//import { login_api, signup_api } from "@/public/data";
 import { getIronSession } from "iron-session";
 import { cookies } from "next/headers";
 
 export const getAuth = async () => {
   const session = await getIronSession<SessionData>(
     await cookies(),
-    sessionOptions
+    sessionOptions,
   );
   if (!session.isLoged) {
     session.isLoged = defaultSession.isLoged;
@@ -16,7 +16,7 @@ export const getAuth = async () => {
   return session;
 };
 
-export const login = async (
+/* export const login = async (
   prevState: { error: undefined | string },
   formData: FormData
 ) => {
@@ -94,25 +94,22 @@ export const signup = async (
   } else {
     return signing.message;
   }
-};
+}; */
 
 export const logout = async () => {
   const session = await getAuth();
   session.destroy();
 };
 
-
 //
 //
 
-
-
-export const get = async (api, queries = '') => {
+export const get = async (api, queries = "") => {
   const session = await getAuth();
   const docs = await fetch(`${api}?${queries}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       authorization: `Bearer ${session.token}`,
     },
   })
@@ -124,9 +121,9 @@ export const get = async (api, queries = '') => {
 export const post = async (api, body) => {
   const session = await getAuth();
   const res = await fetch(`${api}`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       authorization: `Bearer ${session.token}`,
     },
     body: JSON.stringify({ ...body }),
@@ -140,9 +137,9 @@ export const post = async (api, body) => {
 export const patch = async (api, body) => {
   const session = await getAuth();
   const res = await fetch(`${api}`, {
-    method: 'PATCH',
+    method: "PATCH",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       authorization: `Bearer ${session.token}`,
     },
     body: JSON.stringify({ body }),
@@ -156,9 +153,9 @@ export const patch = async (api, body) => {
 export const del = async (api) => {
   const session = await getAuth();
   const res = await fetch(`${api}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       authorization: `Bearer ${session.token}`,
     },
   })
