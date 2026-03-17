@@ -359,38 +359,6 @@ export const projects: Project[] = [
 
 /*
 
-    give me a desc for these websites to put it in the portfolio (make it short and dont talk about the techs used or deployment) :
-    https://myteteam.netlify.app/
-    https://zedgames.netlify.app/
-    https://mubarakcards.netlify.app/
-    https://sabir511.netlify.app/
-    https://oqmaker.com
-    https://github.com/abodesalm/telcom-dash
-    https://abodesalm.github.io/mc
-
-
-    // myteteam.netlify.app
-"Official website for Myte Team, a licensed Saudi digital services company. Showcases services including web development, mobile apps, design, and visual identity — with a projects portfolio and contact system."
-
-// zedgames.netlify.app
-"A full-stack games discovery platform with user authentication, game listings, search by series/developer/publisher, and a 'game of the day' feature. Includes user profiles and a golden games section."
-
-// mubarakcards.netlify.app
-"A simple greeting card generator where users pick a card design, type their name, preview it live, and download the personalized card instantly."
-
-// sabir511.netlify.app
-"An educational platform for teachers featuring a digital library of school textbooks, quizzes, and study materials — built for the Saudi curriculum 1447."
-
-// oqmaker.com
-"A full admin dashboard for managing users, activation codes, tests and question banks. Includes analytics, revenue tracking, and data tables — built for the OQ Maker platform."
-
-// telcom-dash (GitHub)
-"An internal management system built for Telcom Internet Company to handle inventory, storage operations, and IT workflows."
-
-// abodesalm.github.io/mc
-"A bilingual (Arabic/English) cheat sheet reference tool — clean, minimal, and fast."
-
-
 */
 
 export const certs: Certificate[] = [

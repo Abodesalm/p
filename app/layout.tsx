@@ -22,7 +22,8 @@ const syne = Syne({
 
 export const metadata: Metadata = {
   title: "3bod Sa",
-  description: "web dev",
+  description:
+    "Web developer & Graphic designer based in Damascus. Building clean, fast, and memorable digital experiences.",
   verification: {
     google: "nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7-H4",
     //<meta name="google-site-verification" content="nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7-H4" />
