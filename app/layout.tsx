@@ -23,6 +23,9 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: "3bod Sa",
   description: "web dev",
+  verification: {
+    google: "nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7",
+  },
 };
 
 export default async function Layout({
