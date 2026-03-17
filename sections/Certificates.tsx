@@ -3,28 +3,9 @@
 import { useEffect, useState, useRef } from "react";
 import { useTheme } from "next-themes";
 import { BsCalendar3, BsPatchCheckFill, BsAwardFill } from "react-icons/bs";
+import { certs } from "@/public/data";
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
-
-interface Certificate {
-  title: string;
-  score: string | null;
-  date: string;
-}
-
-const certs: Certificate[] = [
-  { title: "Basic Education Certificate", score: "98%", date: "2022" },
-  {
-    title: "High School Certificate",
-    score: "91%",
-    date: "2025",
-  },
-  {
-    title: "Faculty of Dentistry - ASPU",
-    score: null,
-    date: "2025",
-  },
-];
 
 const formatDate = (d: string) => {
   const [y, m] = d.split("-");

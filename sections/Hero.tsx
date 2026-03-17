@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { BiDownload } from "react-icons/bi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { BsArrowDownShort } from "react-icons/bs";
+import { info, projects, skills, socialLinks } from "@/public/data";
 
 const ROLES = ["Web Developer", "Graphic Designer", "Pixel Art Enthusiast"];
 
@@ -67,8 +68,8 @@ export default function Hero() {
   const cardBorder = isDark ? "rgba(34,197,94,0.15)" : "rgba(34,197,94,0.25)";
 
   const xp = new Date().getFullYear() - 2022;
-  const projects_count = 20;
-  const skills_count = 17;
+  const projects_count = projects.length;
+  const skills_count = skills.length - 12;
 
   /* ── animated grid canvas ─────────────────── */
   useEffect(() => {
@@ -364,8 +365,7 @@ export default function Hero() {
               margin: 0,
             }}
           >
-            I craft fast, clean web experiences — from pixel-perfect UIs to
-            scalable back-ends. Based in Damascus , building things that matter.
+            {info.summary}
           </p>
 
           {/* Stats */}
@@ -424,12 +424,12 @@ export default function Hero() {
               alignItems: "center",
             }}
           >
-            <a href="/my-cv.pdf" download className="cv-btn">
+            <a href={`${info.cv_link}`} download className="cv-btn">
               <BiDownload style={{ fontSize: 18 }} />
               Download CV
             </a>
-            <a
-              href="https://github.com/abodesalm"
+            <a // how can i get that specific document
+              href={socialLinks.find((el) => el.title === "Github")?.url}
               target="_blank"
               rel="noopener noreferrer"
               className="ghost-btn"
@@ -439,7 +439,7 @@ export default function Hero() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/3bod-sa"
+              href={socialLinks.find((el) => el.title === "LinkedIn")?.url}
               target="_blank"
               rel="noopener noreferrer"
               className="ghost-btn"

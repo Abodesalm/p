@@ -10,49 +10,9 @@ import "swiper/css/navigation";
 import { BsStarFill, BsQuote } from "react-icons/bs";
 import { FaLinkedin } from "react-icons/fa";
 import { BiLink, BiLinkExternal } from "react-icons/bi";
+import { reviews } from "@/public/data";
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
-
-interface Review {
-  name: string;
-  content: string;
-  link: string | null;
-}
-
-const reviews: Review[] = [
-  {
-    name: "Ahmed A.",
-    content: "م.عبدالرحمن وخدماته مميزه",
-    link: "https://khamsat.com/user/ahmed-alnabulsi",
-  },
-  {
-    name: "Fuad N.",
-    content: "جيد",
-    link: "https://khamsat.com/user/fuadnassar90",
-  },
-  {
-    name: "محمد ص.",
-    content: "تسلم يمناك يا مبدع",
-    link: "https://khamsat.com/user/mmm5123",
-  },
-  {
-    name: "محمد ص.",
-    content:
-      "هذا الرجل كلفه بالعمل ولا تخاف لانه راح يقدم لك عمل يفوق ماتتمناه — جزيل الشكر والتقدير",
-    link: "https://khamsat.com/user/mmm5123",
-  },
-  {
-    name: "محمد ص.",
-    content:
-      "جزيل الشكر والتقدير يا رائع يا مميز، كلمات الشكر لم ولن توفيك حقك، إنسان أمين صادق ما يلف ولا يدور. سرعة، تميز، إنجاز. الله يوفقك وينور طريقك.",
-    link: "https://khamsat.com/user/mmm5123",
-  },
-  {
-    name: "Sidra R.",
-    content: "سريع ومحترف ومتعاون",
-    link: "https://khamsat.com/user/sidra2024",
-  },
-];
 
 export default function Reviews() {
   const { theme, systemTheme } = useTheme();

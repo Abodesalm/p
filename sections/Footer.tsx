@@ -15,48 +15,13 @@ import {
   FaSteam,
   FaGlobe,
 } from "react-icons/fa";
+import { info, socialLinks } from "@/public/data";
 
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
   { label: "Articles", href: "/articles" },
   { label: "Contact", href: "/contact" },
-];
-
-const socialLinks = [
-  {
-    title: "WhatsApp",
-    url: "https://wa.me/963997203291",
-    icon: <FaWhatsapp />,
-  },
-  {
-    title: "Instagram",
-    url: "https://www.instagram.com/3bod.design",
-    icon: <FaInstagram />,
-  },
-  {
-    title: "Facebook",
-    url: "https://www.facebook.com/3abod.sa",
-    icon: <FaFacebook />,
-  },
-  { title: "Telegram", url: "https://t.me/abodsa6", icon: <FaTelegram /> },
-  {
-    title: "LinkedIn",
-    url: "https://linkedin.com/in/3bod-sa",
-    icon: <FaLinkedin />,
-  },
-  { title: "Github", url: "https://github.com/abodesalm", icon: <FaGithub /> },
-  {
-    title: "Discord",
-    url: "https://discord.com/users/1070269889983557692",
-    icon: <FaDiscord />,
-  },
-  {
-    title: "Steam",
-    url: "https://steamcommunity.com/id/3bod_sa/",
-    icon: <FaSteam />,
-  },
-  { title: "Website", url: "https://3bod.sy", icon: <FaGlobe /> },
 ];
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
@@ -179,11 +144,10 @@ export default function Footer() {
                 fontFamily: "var(--font-body, Syne, sans-serif)",
               }}
             >
-              Full-stack developer & designer based in Damascus. Building clean,
-              fast, and memorable digital experiences.
+              {info.hero_sentence}
             </p>
             <a
-              href="mailto:abodesalm45@gmail.com"
+              href={`mailto:${info.email}`}
               style={{
                 color: "#22c55e",
                 fontSize: "0.8rem",

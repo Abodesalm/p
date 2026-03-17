@@ -9,51 +9,9 @@ import {
   BsGithub,
   BsBoxArrowUpRight,
 } from "react-icons/bs";
+import { projects } from "@/public/data";
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
-
-interface Project {
-  title: string;
-  desc: string;
-  date: string;
-  cover: string;
-  tags: string[];
-  action1: { label: string; url: string } | null;
-  action2: { label: string; url: string } | null;
-}
-
-const projects: Project[] = [
-  {
-    title: "Gericht restaurant",
-    desc: "A fully responsive restaurant website. Features a modern landing page, Designed with a clean and appetizing UI optimized for all screen sizes.",
-    date: "2023-03",
-    cover: "restaurant.png",
-    tags: ["react", "plain", "css", "JavaScript"],
-    action1: { label: "Live", url: "https://abodesalm.github.io/restaurant" },
-    action2: {
-      label: "GitHub",
-      url: "https://github.com/abodesalm/restaurant",
-    },
-  },
-  {
-    title: "Coffee shop website",
-    desc: "A landing page for a coffee office supply service. Features service listings, FAQ accordion, and a contact section. Clean single-page layout with smooth anchor navigation.",
-    date: "2024-06",
-    cover: "coffee.png",
-    tags: ["NextJS", "SASS", "TypeScript", "TailwindCSS"],
-    action1: { label: "Live", url: "https://abod-coffee.netlify.app/" },
-    action2: { label: "GitHub", url: "https://github.com/abodesalm/coffee" },
-  },
-  {
-    title: "Telcom website",
-    desc: "An internal management system built for Telcom Internet Company. Shows the available internet packs, and the contacts.",
-    date: "2026-02",
-    cover: "telcom.png",
-    tags: ["React", "TailwindCSS", "", "", ""],
-    action1: { label: "Live", url: "https://tellcom.netlify.app/" },
-    action2: null,
-  },
-];
 
 export default function Projects() {
   const { theme, systemTheme } = useTheme();
@@ -416,7 +374,7 @@ export default function Projects() {
                 {/* Cover */}
                 <div className="cover-wrapper">
                   <img
-                    src={`/img/covers/${p.cover}`}
+                    src={`${p.cover}`}
                     alt={p.title}
                     className="project-cover"
                   />

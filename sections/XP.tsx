@@ -9,77 +9,9 @@ import {
   BsArrowRight,
 } from "react-icons/bs";
 
+import { xps } from "@/public/data";
+
 const PAD = "clamp(1rem, 8vw, 10rem)";
-
-type XPType = "job" | "education";
-
-interface XPItem {
-  title: string;
-  place: string;
-  start: string;
-  end: string;
-  desc: string;
-  type: XPType;
-}
-
-const xpData: XPItem[] = [
-  {
-    title: "Freelancer",
-    place: "Self-employed",
-    start: "Nov 2022",
-    end: "Present",
-    desc: "Developed and designed websites, branding materials, and offered training for clients. Recognized within the freelance and content creators' community for strong technical support and creative solutions.",
-    type: "job",
-  },
-  {
-    title: "Programming Team Leader",
-    place: "MYTE — Saudi Arabia",
-    start: "Jun 2023",
-    end: "Apr 2024",
-    desc: "Led the programming department of MYTE, a Saudi digital services company. Successfully improved project turnaround time and delivery quality before the company was shut down for legal reasons.",
-    type: "job",
-  },
-  {
-    title: "Front-End Web Developer",
-    place: "Virgo",
-    start: "Nov 2024",
-    end: "Feb 2025",
-    desc: "Worked on the front-end development of a Hajj and Umrah software system. Developed the UI using modern technologies, although the project was later discontinued.",
-    type: "job",
-  },
-  {
-    title: "Games Designer",
-    place: "Indie Projects",
-    start: "Jun 2024",
-    end: "Mar 2025",
-    desc: "Designed documentation and game concepts for indie game developers. Handed over responsibilities due to external commitments.",
-    type: "job",
-  },
-  {
-    title: "Podcast Founder",
-    place: "Muallak",
-    start: "Jul 2025",
-    end: "Present",
-    desc: "Founded the podcast from scratch and managed everything related to it; recording, video editing, designing and marketing.",
-    type: "job",
-  },
-  {
-    title: "Storekeeper & IT Specialist",
-    place: "Telcom Internet Company",
-    start: "Aug 2025",
-    end: "Nov 2025",
-    desc: "Worked as storekeeper and IT specialist simultaneously. Managed storage and started developing an internal management system, also helped setting up some of their servers.",
-    type: "job",
-  },
-  {
-    title: "IT Specialist",
-    place: "Telcom Internet Company",
-    start: "Nov 2025",
-    end: "Jan 2026",
-    desc: "Continued developing the system remotely from home while studying in another city. Completed and set up the full system for the company.",
-    type: "job",
-  },
-];
 
 export default function XP() {
   const { theme, systemTheme } = useTheme();
@@ -318,7 +250,7 @@ export default function XP() {
                 gap: "1.5rem",
               }}
             >
-              {xpData.map((item, i) => (
+              {xps.map((item, i) => (
                 <div
                   key={`${item.title}-${i}`}
                   className="xp-animate"
@@ -376,7 +308,7 @@ export default function XP() {
                           {item.end}
                         </span>
                         {/* Type badge */}
-                        <span
+                        {/* <span
                           className="xp-type-badge"
                           style={{
                             background:
@@ -385,15 +317,16 @@ export default function XP() {
                                 : "rgba(99,102,241,0.1)",
                             border: `1px solid ${item.type === "job" ? "rgba(34,197,94,0.3)" : "rgba(99,102,241,0.3)"}`,
                             color: item.type === "job" ? "#22c55e" : "#818cf8",
+                            fontSize: "0.4rem",
                           }}
                         >
                           {item.type === "job" ? (
-                            <BsBriefcaseFill style={{ fontSize: "0.6rem" }} />
+                            <BsBriefcaseFill style={{ fontSize: "0.5rem" }} />
                           ) : (
-                            <BsBookFill style={{ fontSize: "0.6rem" }} />
+                            <BsBookFill style={{ fontSize: "0.5rem" }} />
                           )}
                           {item.type === "job" ? "Work" : "Education"}
-                        </span>
+                        </span> */}
                       </div>
                     </div>
 

@@ -33,131 +33,13 @@ import {
   BsFiles,
 } from "react-icons/bs";
 import { FaGlobeAmericas } from "react-icons/fa";
+import skill from "@/types/skill";
+import { skills } from "@/public/data";
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
 
 /* ── skill data ─────────────────────────────────────── */
 type Section = "all" | "web" | "mobile" | "graphic" | "general" | "lang";
-
-const skills = [
-  // web
-  { title: "HTML", icon: <SiHtml5 />, section: "web", color: "#e34f26" },
-  { title: "CSS", icon: <SiCss3 />, section: "web", color: "#1572b6" },
-  {
-    title: "JavaScript",
-    icon: <SiJavascript />,
-    section: "web",
-    color: "#f7df1e",
-  },
-  {
-    title: "TypeScript",
-    icon: <SiTypescript />,
-    section: "web",
-    color: "#3178c6",
-  },
-  { title: "React", icon: <SiReact />, section: "web", color: "#61dafb" },
-  { title: "Next.js", icon: <SiNextdotjs />, section: "web", color: "#a0a0a0" },
-  { title: "Redux", icon: <SiRedux />, section: "web", color: "#764abc" },
-  { title: "Express", icon: <SiExpress />, section: "web", color: "#a0a0a0" },
-  {
-    title: "Tailwind",
-    icon: <SiTailwindcss />,
-    section: "web",
-    color: "#38bdf8",
-  },
-  { title: "SASS", icon: <SiSass />, section: "web", color: "#cc6699" },
-  { title: "ShadCN", icon: <RxComponent2 />, section: "web", color: "#a0a0a0" },
-  { title: "MongoDB", icon: <SiMongodb />, section: "web", color: "#47a248" },
-  { title: "Redis", icon: <SiRedis />, section: "web", color: "#dc382d" },
-  { title: "Axios", icon: <SiAxios />, section: "web", color: "#5a29e4" },
-  // mobile
-  { title: "Kotlin", icon: <SiKotlin />, section: "mobile", color: "#7f52ff" },
-  // graphic
-  {
-    title: "Blender",
-    icon: <SiBlender />,
-    section: "graphic",
-    color: "#f5792a",
-  },
-  {
-    title: "Illustrator",
-    icon: <SiAdobeillustrator />,
-    section: "graphic",
-    color: "#ff9a00",
-  },
-  { title: "DaVinci", icon: <BsFilm />, section: "graphic", color: "#cc0000" },
-  // general
-  {
-    title: "Git",
-    icon: <SiGit />,
-    section: "general",
-    color: "#f05032",
-    level: "",
-  },
-  { title: "Python", icon: <SiPython />, section: "general", color: "#3776ab" },
-  { title: "Linux", icon: <SiLinux />, section: "general", color: "#fcc624" },
-  {
-    title: "Servers",
-    icon: <BsServer />,
-    section: "general",
-    color: "#22c55e",
-  },
-  {
-    title: "Hardware",
-    icon: <BsCpuFill />,
-    section: "general",
-    color: "#a0a0a0",
-  },
-  {
-    title: "ERD",
-    icon: <BsDiagram3Fill />,
-    section: "general",
-    color: "#22c55e",
-  },
-  { title: "CCNA", icon: <BsWifi />, section: "general", color: "#1ba0d7" },
-  {
-    title: "MS Office",
-    icon: <BsFiles />,
-    section: "general",
-    color: "#d83b01",
-  },
-  // lang
-  {
-    title: "Arabic",
-    icon: "Ar",
-    section: "lang",
-    level: "Native",
-    color: "#22c55e",
-  },
-  {
-    title: "English",
-    icon: "En",
-    section: "lang",
-    level: "Fluent",
-    color: "#22c55e",
-  },
-  {
-    title: "German",
-    icon: "Ge",
-    section: "lang",
-    level: "Good",
-    color: "#22c55e",
-  },
-  {
-    title: "French",
-    icon: "Fr",
-    section: "lang",
-    level: "Limited",
-    color: "#22c55e",
-  },
-  {
-    title: "Spanish",
-    icon: "Sp",
-    section: "lang",
-    level: "Limited",
-    color: "#22c55e",
-  },
-] as const;
 
 const TABS: { key: Section; label: string }[] = [
   { key: "all", label: "All" },
