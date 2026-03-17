@@ -24,6 +24,21 @@ export const metadata: Metadata = {
   title: "3bod Sa",
   description:
     "Web developer & Graphic designer based in Damascus. Building clean, fast, and memorable digital experiences.",
+  openGraph: {
+    title: "Abod | Full Stack Developer",
+    description: "Explore my latest projects and technical expertise.",
+    url: "https://3bod.sy",
+    siteName: "3bod.sy",
+    /* images: [
+      {
+        url: "https://3bod.sy/img/.png", // Create a nice preview image
+        width: 1200,
+        height: 630,
+      },
+    ], */
+    locale: "en_US",
+    type: "website",
+  },
   verification: {
     google: "nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7-H4",
     //<meta name="google-site-verification" content="nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7-H4" />
