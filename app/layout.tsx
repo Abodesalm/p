@@ -24,7 +24,8 @@ export const metadata: Metadata = {
   title: "3bod Sa",
   description: "web dev",
   verification: {
-    google: "nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7",
+    google: "nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7-H4",
+    //<meta name="google-site-verification" content="nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7-H4" />
   },
 };
 
