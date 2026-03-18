@@ -6,7 +6,8 @@ const XPSchema = new Schema(
     start: { type: Date, required: true },
     end: { type: Date },
     desc: { type: String },
-    type: { type: String, required: true }, // work | internship | freelance
+    place: { type: String },
+    type: { type: String },
   },
   { timestamps: true },
 );

@@ -120,3 +120,5 @@ export default function Icon({ i, className = "" }) {
   else if (i === "family-friendly")
     return <IoDocuments className={className} />;
 }
+
+// I use this component to save icons in the database as texts (string) and when i want to use it in the front end i translate it to Icon Element here

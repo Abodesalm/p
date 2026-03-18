@@ -2,14 +2,7 @@ import { SessionOptions } from "iron-session";
 
 export interface SessionData {
   token?: string;
-  username?: string;
-  avatar?: number;
-  role?: string;
-  tags?: string[];
-  wishlist?: string[];
-  id?: string;
   isLoged: boolean;
-  expiresAt?: number;
 }
 
 export const defaultSession: SessionData = {

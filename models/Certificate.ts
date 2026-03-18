@@ -4,7 +4,7 @@ const CertificateSchema = new Schema(
   {
     title: { type: String, required: true },
     score: { type: String },
-    date: { type: Date },
+    date: { type: String },
   },
   { timestamps: true },
 );

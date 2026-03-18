@@ -50,13 +50,20 @@ import link from "@/types/link";
 let space = "local";
 let API_URL;
 if (space === "local") {
-  API_URL = `http://127.0.0.1:8000`;
+  API_URL = `/`;
 } else if (space === "host") {
-  API_URL = `https://zed-games-api.onrender.com`;
+  API_URL = `/`;
 }
 
 const api = {
   main_api: `${API_URL}/api`,
+  projects_api: `${API_URL}/api/projects`,
+  skills_api: `${API_URL}/api/skills`,
+  articles_api: `${API_URL}/api/articles`,
+  XPs_api: `${API_URL}/api/xps`,
+  certs_api: `${API_URL}/api/certs`,
+  links_api: `${API_URL}/api/links`,
+  reviews_api: `${API_URL}/api/reviews`,
 };
 
 export const skills: skill[] = [
@@ -461,4 +468,13 @@ export const info = {
     "Web developer & Graphic designer based in Damascus. Building clean, fast, and memorable digital experiences.",
 };
 
-export const { main_api } = api;
+export const {
+  main_api,
+  XPs_api,
+  certs_api,
+  links_api,
+  skills_api,
+  reviews_api,
+  projects_api,
+  articles_api,
+} = api;

@@ -414,7 +414,7 @@ export default function Projects() {
                   <div
                     style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}
                   >
-                    {p.tags.map((tag) => (
+                    {p?.tags?.map((tag) => (
                       <span key={tag} className="project-tag">
                         {tag}
                       </span>
