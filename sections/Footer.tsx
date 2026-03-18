@@ -4,17 +4,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Terminal } from "lucide-react";
-import {
-  FaWhatsapp,
-  FaInstagram,
-  FaFacebook,
-  FaTelegram,
-  FaLinkedin,
-  FaGithub,
-  FaDiscord,
-  FaSteam,
-  FaGlobe,
-} from "react-icons/fa";
+import Icon from "@/components/layout/Icon";
 import { info, socialLinks } from "@/public/data";
 
 const navLinks = [
@@ -100,11 +90,6 @@ export default function Footer() {
           opacity: 0.7;
           margin-bottom: 1rem;
         }
-
-        .footer-divider {
-          width: 100%;
-          height: 1px;
-        }
       `}</style>
 
       <footer
@@ -114,7 +99,7 @@ export default function Footer() {
           transition: "background 0.3s",
         }}
       >
-        {/* ── Main footer content ─────────────────────── */}
+        {/* ── Main content ─────────────────────────────── */}
         <div
           style={{
             paddingLeft: PAD,
@@ -161,7 +146,7 @@ export default function Footer() {
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.85")}
             >
-              abodesalm45@gmail.com
+              {info.email}
             </a>
           </div>
 
@@ -207,7 +192,9 @@ export default function Footer() {
                   aria-label={title}
                   title={title}
                 >
-                  {icon}
+                  <Icon
+                    i={typeof icon === "string" ? icon : title.toLowerCase()}
+                  />
                 </a>
               ))}
             </div>

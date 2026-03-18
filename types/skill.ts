@@ -1,6 +1,6 @@
 export default interface skill {
   title: string;
-  icon: any;
+  icon: string; // icon key resolved by Icon.tsx
   section: string;
   level?: string;
   color: string;

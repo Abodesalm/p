@@ -2,43 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import {
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiTypescript,
-  SiReact,
-  SiNextdotjs,
-  SiRedux,
-  SiExpress,
-  SiTailwindcss,
-  SiSass,
-  SiMongodb,
-  SiRedis,
-  SiAxios,
-  SiGit,
-  SiBlender,
-  SiAdobeillustrator,
-  SiPython,
-  SiKotlin,
-  SiLinux,
-} from "react-icons/si";
-import { RxComponent2 } from "react-icons/rx";
-import {
-  BsFilm,
-  BsServer,
-  BsCpuFill,
-  BsDiagram3Fill,
-  BsWifi,
-  BsFiles,
-} from "react-icons/bs";
-import { FaGlobeAmericas } from "react-icons/fa";
+import Icon from "@/components/layout/Icon";
 import skill from "@/types/skill";
 import { skills } from "@/public/data";
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
 
-/* ── skill data ─────────────────────────────────────── */
 type Section = "all" | "web" | "mobile" | "graphic" | "general" | "lang";
 
 const TABS: { key: Section; label: string }[] = [
@@ -59,6 +28,7 @@ export default function Skills() {
   useEffect(() => {
     setMounted(true);
   }, []);
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => {
@@ -86,10 +56,13 @@ export default function Skills() {
   const filtered =
     active === "all" ? skills : skills.filter((s) => s.section === active);
 
+  // Whether the icon is a text-based lang code (Ar, En, Ge, Fr, Sp)
+  const isTextIcon = (icon: any) =>
+    typeof icon === "string" && icon.length <= 2;
+
   return (
     <>
       <style>{`
-        /* Mobile-first: small cards, 5 per row */
         .skill-card {
           display: flex;
           flex-direction: column;
@@ -119,6 +92,9 @@ export default function Skills() {
           font-size: 1.3rem;
           transition: transform 0.25s, filter 0.25s;
           line-height: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .skill-card:hover .skill-icon {
           transform: scale(1.15);
@@ -146,9 +122,8 @@ export default function Skills() {
           background: rgba(34,197,94,0.08);
         }
 
-        /* Desktop: larger cards */
         @media (min-width: 768px) {
-          .skill-card { gap: 10px; padding: 1.4rem 1rem; border-radius: 14px; }
+          .skill-card  { gap: 10px; padding: 1.4rem 1rem; border-radius: 14px; }
           .skill-icon  { font-size: 2rem; }
           .skill-title { font-size: 0.72rem; letter-spacing: 0.06em; }
           .skill-level { font-size: 0.42rem; padding: 3px 8px; }
@@ -167,10 +142,7 @@ export default function Skills() {
           transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
           white-space: nowrap;
         }
-        .tab-btn:hover {
-          border-color: #22c55e !important;
-          color: #22c55e !important;
-        }
+        .tab-btn:hover { border-color: #22c55e !important; color: #22c55e !important; }
         .tab-btn.tab-active {
           background: #22c55e !important;
           border-color: #22c55e !important;
@@ -186,20 +158,17 @@ export default function Skills() {
           color: #22c55e;
           opacity: 0.8;
         }
-
         .section-title {
           font-family: var(--font-pixel, 'Press Start 2P', monospace);
           line-height: 1.5;
           margin: 0;
         }
 
-        /* Mobile: 5 columns */
         .skills-grid {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
           gap: 0.5rem;
         }
-        /* Desktop: auto-fill with min 110px */
         @media (min-width: 768px) {
           .skills-grid {
             grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
@@ -228,7 +197,7 @@ export default function Skills() {
           transition: "background 0.3s",
         }}
       >
-        {/* ── Header ───────────────────────────────────── */}
+        {/* ── Header ─────────────────────────────────── */}
         <div
           style={{
             opacity: visible ? 1 : 0,
@@ -242,10 +211,7 @@ export default function Skills() {
           </p>
           <h2
             className="section-title"
-            style={{
-              fontSize: "clamp(1rem, 3vw, 1.6rem)",
-              color: textMain,
-            }}
+            style={{ fontSize: "clamp(1rem, 3vw, 1.6rem)", color: textMain }}
           >
             Skills &amp; Tools
           </h2>
@@ -261,7 +227,7 @@ export default function Skills() {
           />
         </div>
 
-        {/* ── Filter tabs ──────────────────────────────── */}
+        {/* ── Filter tabs ────────────────────────────── */}
         <div
           style={{
             display: "flex",
@@ -289,7 +255,7 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* ── Skills grid ──────────────────────────────── */}
+        {/* ── Skills grid ────────────────────────────── */}
         <div className="skills-grid">
           {filtered.map((skill, i) => (
             <div
@@ -304,29 +270,21 @@ export default function Skills() {
                 "--skill-color-faint": `${skill.color}22`,
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background =
-                  cardHoverBg;
-                (e.currentTarget as HTMLDivElement).style.borderColor =
-                  `${skill.color}55`;
-                (e.currentTarget as HTMLDivElement).style.boxShadow =
-                  `0 8px 28px ${skill.color}22`;
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.background = cardHoverBg;
+                el.style.borderColor = `${skill.color}55`;
+                el.style.boxShadow = `0 8px 28px ${skill.color}22`;
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.background = cardBg;
-                (e.currentTarget as HTMLDivElement).style.borderColor =
-                  cardBorder;
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.background = cardBg;
+                el.style.borderColor = cardBorder;
+                el.style.boxShadow = "none";
               }}
             >
               {/* Icon */}
-              <span
-                className="skill-icon"
-                style={{
-                  color:
-                    typeof skill.icon === "string" ? "#a0a0a0" : skill.color,
-                }}
-              >
-                {skill.icon}
+              <span className="skill-icon" style={{ color: skill.color }}>
+                <Icon i={typeof skill.icon === "string" ? skill.icon : ""} />
               </span>
 
               {/* Title */}
@@ -334,7 +292,7 @@ export default function Skills() {
                 {skill.title}
               </span>
 
-              {/* Level badge (only for lang section) */}
+              {/* Level badge — shown for lang and any skill with a level */}
               {"level" in skill && skill.level && (
                 <span className="skill-level">{skill.level as string}</span>
               )}

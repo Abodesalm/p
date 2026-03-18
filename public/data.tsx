@@ -1,46 +1,4 @@
 import skill from "@/types/skill";
-import {
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiTypescript,
-  SiReact,
-  SiNextdotjs,
-  SiRedux,
-  SiExpress,
-  SiTailwindcss,
-  SiSass,
-  SiMongodb,
-  SiRedis,
-  SiAxios,
-  SiGit,
-  SiBlender,
-  SiAdobeillustrator,
-  SiPython,
-  SiKotlin,
-  SiLinux,
-} from "react-icons/si";
-import { RxComponent2 } from "react-icons/rx";
-import {
-  BsFilm,
-  BsServer,
-  BsCpuFill,
-  BsDiagram3Fill,
-  BsWifi,
-  BsFiles,
-} from "react-icons/bs";
-import {
-  FaDiscord,
-  FaFacebook,
-  FaGithub,
-  FaGlobe,
-  FaGlobeAmericas,
-  FaInstagram,
-  FaLinkedin,
-  FaSteam,
-  FaTelegram,
-  FaWhatsapp,
-} from "react-icons/fa";
 import XPItem from "@/types/xp";
 import Project from "@/types/project";
 import Certificate from "@/types/cert";
@@ -68,83 +26,48 @@ const api = {
 
 export const skills: skill[] = [
   // web
-  { title: "HTML", icon: <SiHtml5 />, section: "web", color: "#e34f26" },
-  { title: "CSS", icon: <SiCss3 />, section: "web", color: "#1572b6" },
-  {
-    title: "JavaScript",
-    icon: <SiJavascript />,
-    section: "web",
-    color: "#f7df1e",
-  },
-  {
-    title: "TypeScript",
-    icon: <SiTypescript />,
-    section: "web",
-    color: "#3178c6",
-  },
-  { title: "React", icon: <SiReact />, section: "web", color: "#61dafb" },
-  { title: "Next.js", icon: <SiNextdotjs />, section: "web", color: "#a0a0a0" },
-  { title: "Redux", icon: <SiRedux />, section: "web", color: "#764abc" },
-  { title: "Express", icon: <SiExpress />, section: "web", color: "#a0a0a0" },
-  {
-    title: "Tailwind",
-    icon: <SiTailwindcss />,
-    section: "web",
-    color: "#38bdf8",
-  },
-  { title: "SASS", icon: <SiSass />, section: "web", color: "#cc6699" },
-  { title: "ShadCN", icon: <RxComponent2 />, section: "web", color: "#a0a0a0" },
-  { title: "MongoDB", icon: <SiMongodb />, section: "web", color: "#47a248" },
-  { title: "Redis", icon: <SiRedis />, section: "web", color: "#dc382d" },
-  { title: "Axios", icon: <SiAxios />, section: "web", color: "#5a29e4" },
+  { title: "HTML", icon: "html", section: "web", color: "#e34f26" },
+  { title: "CSS", icon: "css", section: "web", color: "#1572b6" },
+  { title: "JavaScript", icon: "js", section: "web", color: "#f7df1e" },
+  { title: "TypeScript", icon: "ts", section: "web", color: "#3178c6" },
+  { title: "React", icon: "reactjs", section: "web", color: "#61dafb" },
+  { title: "Next.js", icon: "nextjs", section: "web", color: "#a0a0a0" },
+  { title: "Redux", icon: "redux", section: "web", color: "#764abc" },
+  { title: "Express", icon: "express", section: "web", color: "#a0a0a0" },
+  { title: "Tailwind", icon: "tailwind", section: "web", color: "#38bdf8" },
+  { title: "SASS", icon: "sass", section: "web", color: "#cc6699" },
+  { title: "ShadCN", icon: "shadcn", section: "web", color: "#a0a0a0" },
+  { title: "MongoDB", icon: "mongodb", section: "web", color: "#47a248" },
+  { title: "Redis", icon: "redis", section: "web", color: "#dc382d" },
+  { title: "Axios", icon: "axios", section: "web", color: "#5a29e4" },
   // mobile
-  { title: "Kotlin", icon: <SiKotlin />, section: "mobile", color: "#7f52ff" },
+  { title: "Kotlin", icon: "kotlin", section: "mobile", color: "#7f52ff" },
   // graphic
-  {
-    title: "Blender",
-    icon: <SiBlender />,
-    section: "graphic",
-    color: "#f5792a",
-  },
+  { title: "Blender", icon: "blender", section: "graphic", color: "#f5792a" },
   {
     title: "Illustrator",
-    icon: <SiAdobeillustrator />,
+    icon: "illustrator",
     section: "graphic",
     color: "#ff9a00",
   },
-  { title: "DaVinci", icon: <BsFilm />, section: "graphic", color: "#cc0000" },
+  { title: "DaVinci", icon: "davinci", section: "graphic", color: "#cc0000" },
   // general
   {
     title: "Git",
-    icon: <SiGit />,
+    icon: "git",
     section: "general",
     color: "#f05032",
     level: "",
   },
-  { title: "Python", icon: <SiPython />, section: "general", color: "#3776ab" },
-  { title: "Linux", icon: <SiLinux />, section: "general", color: "#fcc624" },
-  {
-    title: "Servers",
-    icon: <BsServer />,
-    section: "general",
-    color: "#22c55e",
-  },
-  {
-    title: "Hardware",
-    icon: <BsCpuFill />,
-    section: "general",
-    color: "#a0a0a0",
-  },
-  {
-    title: "ERD",
-    icon: <BsDiagram3Fill />,
-    section: "general",
-    color: "#22c55e",
-  },
-  { title: "CCNA", icon: <BsWifi />, section: "general", color: "#1ba0d7" },
+  { title: "Python", icon: "py", section: "general", color: "#3776ab" },
+  { title: "Linux", icon: "linux", section: "general", color: "#fcc624" },
+  { title: "Servers", icon: "servers", section: "general", color: "#22c55e" },
+  { title: "Hardware", icon: "hardware", section: "general", color: "#a0a0a0" },
+  { title: "ERD", icon: "erd", section: "general", color: "#22c55e" },
+  { title: "CCNA", icon: "ccna", section: "general", color: "#1ba0d7" },
   {
     title: "MS Office",
-    icon: <BsFiles />,
+    icon: "msoffice",
     section: "general",
     color: "#d83b01",
   },
@@ -331,7 +254,7 @@ export const projects: Project[] = [
   },
   {
     title: "NM System",
-    desc: "Network Mamangement system is an internal system built for Telcom Internet Company to handle inventory, storage operations, and internet workflows.",
+    desc: "Network Management system is an internal system built for Telcom Internet Company to handle inventory, storage operations, and internet workflows.",
     date: "2025-10",
     cover: "/img/nm/cover.png",
     type: "web",
@@ -364,22 +287,10 @@ export const projects: Project[] = [
   },
 ];
 
-/*
-
-*/
-
 export const certs: Certificate[] = [
   { title: "Basic Education Certificate", score: "98%", date: "2022" },
-  {
-    title: "High School Certificate",
-    score: "91%",
-    date: "2025",
-  },
-  {
-    title: "Faculty of Dentistry - ASPU",
-    score: "First Year",
-    date: "2025",
-  },
+  { title: "High School Certificate", score: "91%", date: "2025" },
+  { title: "Faculty of Dentistry - ASPU", score: "First Year", date: "2025" },
 ];
 
 export const reviews: Review[] = [
@@ -417,40 +328,37 @@ export const reviews: Review[] = [
   },
 ];
 
+// socialLinks — icons are now strings, translated by Icon.tsx
 export const socialLinks: link[] = [
-  {
-    title: "WhatsApp",
-    url: "https://wa.me/963997203291",
-    icon: <FaWhatsapp />,
-  },
+  { title: "WhatsApp", url: "https://wa.me/963997203291", icon: "whatsapp" },
   {
     title: "Instagram",
     url: "https://www.instagram.com/3bod.design",
-    icon: <FaInstagram />,
+    icon: "instagram",
   },
   {
     title: "Facebook",
     url: "https://www.facebook.com/3abod.sa",
-    icon: <FaFacebook />,
+    icon: "facebook",
   },
-  { title: "Telegram", url: "https://t.me/abodsa6", icon: <FaTelegram /> },
+  { title: "Telegram", url: "https://t.me/abodsa6", icon: "telegram" },
   {
     title: "LinkedIn",
     url: "https://linkedin.com/in/3bod-sa",
-    icon: <FaLinkedin />,
+    icon: "linkedin",
   },
-  { title: "Github", url: "https://github.com/abodesalm", icon: <FaGithub /> },
+  { title: "Github", url: "https://github.com/abodesalm", icon: "github" },
   {
     title: "Discord",
     url: "https://discord.com/users/1070269889983557692",
-    icon: <FaDiscord />,
+    icon: "discord",
   },
   {
     title: "Steam",
     url: "https://steamcommunity.com/id/3bod_sa/",
-    icon: <FaSteam />,
+    icon: "steam",
   },
-  { title: "Website", url: "https://3bod.sy", icon: <FaGlobe /> },
+  { title: "Website", url: "https://3bod.sy", icon: "website" },
 ];
 
 export const info = {
@@ -461,8 +369,8 @@ export const info = {
   email: "abodesalm45@gmail.com",
   number: "0997 203 291",
   summary:
-    "I craft fast, clean web experiences — from pixel-perfect UIs to scalable back-ends. Based in Damascus , building things that matter.",
-  hobbies: ["football", "pixel art", "video games", ""],
+    "I craft fast, clean web experiences — from pixel-perfect UIs to scalable back-ends. Based in Damascus, building things that matter.",
+  hobbies: ["football", "pixel art", "video games"],
   cv_link: "/my-cv.pdf",
   hero_sentence:
     "Web developer & Graphic designer based in Damascus. Building clean, fast, and memorable digital experiences.",

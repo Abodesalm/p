@@ -1,8 +1,8 @@
 import { SessionOptions } from "iron-session";
 
 export interface SessionData {
-  token?: string;
   isLoged: boolean;
+  token?: string;
 }
 
 export const defaultSession: SessionData = {
@@ -10,7 +10,7 @@ export const defaultSession: SessionData = {
 };
 
 export const sessionOptions: SessionOptions = {
-  password: "iawyfa7821931gff1h87gef187eh8wsd1wushksjf1ij1is9",
+  password: process.env.SESSION_SECRET as string,
   cookieName: "auth-session",
   cookieOptions: {
     httpOnly: true,
