@@ -8,9 +8,9 @@ import link from "@/types/link";
 let space = "local";
 let API_URL;
 if (space === "local") {
-  API_URL = `/`;
+  API_URL = ``;
 } else if (space === "host") {
-  API_URL = `/`;
+  API_URL = ``;
 }
 
 const api = {

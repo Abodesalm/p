@@ -3,16 +3,13 @@
 import { useEffect, useState, useRef } from "react";
 import { useTheme } from "next-themes";
 import { BsCalendar3, BsPatchCheckFill, BsAwardFill } from "react-icons/bs";
-import { certs } from "@/public/data";
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
+interface Props {
+  data: any[];
+}
 
-const formatDate = (d: string) => {
-  const [y, m] = d.split("-");
-  return `${new Date(`${y}-${m}-01`).toLocaleString("default", { month: "short" })} ${y}`;
-};
-
-export default function Certificates() {
+export default function Certificates({ data }: Props) {
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -21,7 +18,6 @@ export default function Certificates() {
   useEffect(() => {
     setMounted(true);
   }, []);
-
   useEffect(() => {
     const obs = new IntersectionObserver(
       ([e]) => {
@@ -36,22 +32,23 @@ export default function Certificates() {
 
   const current = theme === "system" ? systemTheme : theme;
   const isDark = mounted ? current === "dark" : true;
+  const bg = isDark ? "rgb(9,11,14)" : "#f8fafc";
+  const textMain = isDark ? "#f8fafc" : "#090b0e";
+  const cardBg = isDark ? "rgba(255,255,255,0.03)" : "#ffffff";
+  const cardBorder = isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.08)";
 
-  /* ── floating particles canvas ───────────────── */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     const resize = () => {
       canvas.width = canvas.parentElement?.offsetWidth ?? window.innerWidth;
       canvas.height = canvas.parentElement?.offsetHeight ?? window.innerHeight;
     };
     resize();
     window.addEventListener("resize", resize);
-
-    type Particle = {
+    type P = {
       x: number;
       y: number;
       r: number;
@@ -59,8 +56,7 @@ export default function Certificates() {
       opacity: number;
       drift: number;
     };
-
-    const particles: Particle[] = Array.from({ length: 38 }, () => ({
+    const particles: P[] = Array.from({ length: 38 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       r: Math.random() * 1.8 + 0.4,
@@ -68,7 +64,6 @@ export default function Certificates() {
       opacity: Math.random() * 0.35 + 0.08,
       drift: (Math.random() - 0.5) * 0.3,
     }));
-
     let raf: number;
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -95,102 +90,22 @@ export default function Certificates() {
     };
   }, [isDark]);
 
-  const bg = isDark ? "rgb(9,11,14)" : "#f8fafc";
-  const textMain = isDark ? "#f8fafc" : "#090b0e";
-  const textMuted = isDark ? "rgba(248,250,252,0.5)" : "rgba(9,11,14,0.5)";
-  const cardBg = isDark ? "rgba(255,255,255,0.03)" : "#ffffff";
-  const cardBorder = isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.08)";
-
   return (
     <>
       <style>{`
-        .cert-card {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          padding: 1.25rem 1.5rem;
-          border-radius: 14px;
-          border: 1px solid;
-          transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-        }
-        .cert-card:hover {
-          transform: translateX(6px);
-          box-shadow: 0 8px 32px rgba(34,197,94,0.08);
-          border-color: rgba(34,197,94,0.3) !important;
-        }
-        .cert-icon-wrap {
-          width: 44px; height: 44px;
-          border-radius: 12px;
-          border: 1.5px solid rgba(34,197,94,0.3);
-          background: rgba(34,197,94,0.07);
-          display: flex; align-items: center; justify-content: center;
-          flex-shrink: 0;
-          transition: background 0.25s, box-shadow 0.25s;
-        }
-        .cert-card:hover .cert-icon-wrap {
-          background: rgba(34,197,94,0.14);
-          box-shadow: 0 0 14px rgba(34,197,94,0.3);
-        }
-        .cert-title {
-          font-family: var(--font-body, Syne, sans-serif);
-          font-size: 0.92rem;
-          font-weight: 700;
-          letter-spacing: 0.01em;
-          margin: 0 0 6px 0;
-          line-height: 1.3;
-        }
-        .cert-meta {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          flex-wrap: wrap;
-        }
-        .cert-badge {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 5px;
-          font-family: var(--font-pixel, 'Press Start 2P', monospace);
-          font-size: 0.5rem;
-          font-weight: 700;
-          line-height: 1;
-          letter-spacing: 0.04em;
-          padding: 0 8px;
-          height: 20px;
-          border-radius: 999px;
-          white-space: nowrap;
-        }
-        .cert-badge.date {
-          border: 1px solid rgba(34,197,94,0.2);
-          color: rgba(34,197,94,0.75);
-          background: rgba(34,197,94,0.06);
-        }
-        .cert-badge.score {
-          border: 1px solid rgba(251,191,36,0.3);
-          color: #fbbf24;
-          background: rgba(251,191,36,0.07);
-        }
-        @keyframes certFadeIn {
-          from { opacity: 0; transform: translateY(16px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .cert-animate {
-          animation: certFadeIn 0.45s ease forwards;
-          opacity: 0;
-        }
-        .section-label {
-          font-family: var(--font-pixel, 'Press Start 2P', monospace);
-          font-size: 0.5rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: #22c55e;
-          opacity: 0.8;
-        }
-        .section-title {
-          font-family: var(--font-pixel, 'Press Start 2P', monospace);
-          line-height: 1.5;
-          margin: 0;
-        }
+        .cert-card { display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border-radius:14px; border:1px solid; transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s; }
+        .cert-card:hover { transform:translateX(6px); box-shadow:0 8px 32px rgba(34,197,94,0.08); border-color:rgba(34,197,94,0.3) !important; }
+        .cert-icon-wrap { width:44px; height:44px; border-radius:12px; border:1.5px solid rgba(34,197,94,0.3); background:rgba(34,197,94,0.07); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background 0.25s,box-shadow 0.25s; }
+        .cert-card:hover .cert-icon-wrap { background:rgba(34,197,94,0.14); box-shadow:0 0 14px rgba(34,197,94,0.3); }
+        .cert-title { font-family:var(--font-body,Syne,sans-serif); font-size:0.92rem; font-weight:700; letter-spacing:0.01em; margin:0 0 6px 0; line-height:1.3; }
+        .cert-meta { display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap; }
+        .cert-badge { display:inline-flex; align-items:center; justify-content:center; gap:5px; font-family:var(--font-pixel,'Press Start 2P',monospace); font-size:0.5rem; font-weight:700; line-height:1; letter-spacing:0.04em; padding:0 8px; height:20px; border-radius:999px; white-space:nowrap; }
+        .cert-badge.date  { border:1px solid rgba(34,197,94,0.2); color:rgba(34,197,94,0.75); background:rgba(34,197,94,0.06); }
+        .cert-badge.score { border:1px solid rgba(251,191,36,0.3); color:#fbbf24; background:rgba(251,191,36,0.07); }
+        @keyframes certFadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+        .cert-animate { animation:certFadeIn 0.45s ease forwards; opacity:0; }
+        .section-label { font-family:var(--font-pixel,'Press Start 2P',monospace); font-size:0.5rem; letter-spacing:0.12em; text-transform:uppercase; color:#22c55e; opacity:0.8; }
+        .section-title { font-family:var(--font-pixel,'Press Start 2P',monospace); line-height:1.5; margin:0; }
       `}</style>
 
       <section
@@ -205,7 +120,6 @@ export default function Certificates() {
           transition: "background 0.3s",
         }}
       >
-        {/* ── Floating particles canvas ─────────── */}
         <canvas
           ref={canvasRef}
           style={{
@@ -217,8 +131,6 @@ export default function Certificates() {
             zIndex: 0,
           }}
         />
-
-        {/* ── Corner glow top-right ─────────────── */}
         <div
           style={{
             position: "absolute",
@@ -228,36 +140,18 @@ export default function Certificates() {
             height: "280px",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(34,197,94,0.07) 0%, transparent 70%)",
+              "radial-gradient(circle,rgba(34,197,94,0.07) 0%,transparent 70%)",
             pointerEvents: "none",
             zIndex: 0,
           }}
         />
 
-        {/* ── Horizontal scan line ──────────────── */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: "50%",
-            height: "1px",
-            background: isDark
-              ? "linear-gradient(to right, transparent, rgba(34,197,94,0.08), transparent)"
-              : "linear-gradient(to right, transparent, rgba(34,197,94,0.14), transparent)",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        />
-
-        {/* ── Content ──────────────────────────── */}
         <div style={{ position: "relative", zIndex: 1 }}>
-          {/* Header */}
           <div
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(20px)",
-              transition: "opacity 0.6s ease, transform 0.6s ease",
+              transition: "opacity 0.6s ease,transform 0.6s ease",
               marginBottom: "3rem",
             }}
           >
@@ -266,7 +160,7 @@ export default function Certificates() {
             </p>
             <h2
               className="section-title"
-              style={{ fontSize: "clamp(1rem, 3vw, 1.6rem)", color: textMain }}
+              style={{ fontSize: "clamp(1rem,3vw,1.6rem)", color: textMain }}
             >
               Certificates
             </h2>
@@ -281,21 +175,19 @@ export default function Certificates() {
               }}
             />
           </div>
-
-          {/* Cards grid */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns:
-                "repeat(auto-fill, minmax(min(100%, 480px), 1fr))",
+                "repeat(auto-fill,minmax(min(100%,480px),1fr))",
               gap: "1rem",
               opacity: visible ? 1 : 0,
               transition: "opacity 0.5s ease 0.2s",
             }}
           >
-            {certs.map((c, i) => (
+            {data.map((c, i) => (
               <div
-                key={c.title}
+                key={c._id}
                 className="cert-card cert-animate"
                 style={{
                   background: cardBg,
@@ -303,14 +195,11 @@ export default function Certificates() {
                   animationDelay: `${i * 80}ms`,
                 }}
               >
-                {/* Icon */}
                 <div className="cert-icon-wrap">
                   <BsAwardFill
                     style={{ fontSize: "1.2rem", color: "#22c55e" }}
                   />
                 </div>
-
-                {/* Info */}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <h3 className="cert-title" style={{ color: textMain }}>
                     {c.title}

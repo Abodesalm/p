@@ -3,8 +3,8 @@ import { Schema, model, models } from "mongoose";
 const XPSchema = new Schema(
   {
     title: { type: String, required: true },
-    start: { type: Date, required: true },
-    end: { type: Date },
+    start: { type: String, required: true },
+    end: { type: String },
     desc: { type: String },
     place: { type: String },
     type: { type: String },

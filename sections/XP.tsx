@@ -2,18 +2,26 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import {
-  BsBriefcaseFill,
-  BsBookFill,
-  BsCalendar3,
-  BsArrowRight,
-} from "react-icons/bs";
-
-import { xps } from "@/public/data";
+import { BsCalendar3, BsArrowRight } from "react-icons/bs";
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
 
-export default function XP() {
+function formatDate(val: string): string {
+  if (!val) return "Present";
+  if (val.includes("T") || /^\d{4}-\d{2}-\d{2}/.test(val)) {
+    return new Date(val).toLocaleString("default", {
+      month: "short",
+      year: "numeric",
+    });
+  }
+  return val;
+}
+
+interface Props {
+  data: any[];
+}
+
+export default function XP({ data }: Props) {
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -35,7 +43,6 @@ export default function XP() {
 
   const current = theme === "system" ? systemTheme : theme;
   const isDark = mounted ? current === "dark" : true;
-
   const bg = isDark ? "#090b0e" : "#f8fafc";
   const textMain = isDark ? "#f8fafc" : "#090b0e";
   const textMuted = isDark ? "rgba(248,250,252,0.6)" : "rgba(9,11,14,0.6)";
@@ -47,103 +54,17 @@ export default function XP() {
   return (
     <>
       <style>{`
-        .xp-card {
-          position: relative;
-          padding: 1.5rem;
-          border-radius: 14px;
-          border: 1px solid;
-          transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-        }
-        .xp-card:hover {
-          transform: translateX(6px);
-          box-shadow: 0 8px 32px rgba(34,197,94,0.08);
-          border-color: rgba(34,197,94,0.3) !important;
-        }
-        .xp-card-title {
-          font-family: var(--font-body, Syne, sans-serif);
-          font-size: 1rem;
-          font-weight: 700;
-          letter-spacing: 0.02em;
-          margin: 0 0 4px 0;
-        }
-        .xp-card-place {
-          font-family: var(--font-body, Syne, sans-serif);
-          font-size: 0.8rem;
-          font-weight: 600;
-          color: #22c55e;
-          letter-spacing: 0.04em;
-        }
-        .xp-card-date {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-          font-family: var(--font-body, Syne, sans-serif);
-          font-size: 0.72rem;
-          font-weight: 700;
-          line-height: 1;
-          letter-spacing: 0.04em;
-          height: 26px;
-          padding: 0 12px;
-          border-radius: 999px;
-          border: 1px solid rgba(34,197,94,0.4);
-          color: #22c55e;
-          background: rgba(34,197,94,0.1);
-          white-space: nowrap;
-        }
-        .xp-card-desc {
-          font-family: var(--font-body, Syne, sans-serif);
-          font-size: 0.85rem;
-          line-height: 1.75;
-          margin: 0;
-        }
-        .xp-type-badge {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 5px;
-          font-family: var(--font-body, Syne, sans-serif);
-          font-size: 0.65rem;
-          font-weight: 700;
-          line-height: 1;
-          letter-spacing: 0.04em;
-          text-transform: uppercase;
-          height: 24px;
-          padding: 0 10px;
-          border-radius: 999px;
-        }
-        .xp-dot {
-          position: absolute;
-          left: -1.85rem;
-          top: 1.6rem;
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: #22c55e;
-          box-shadow: 0 0 10px rgba(34,197,94,0.6);
-          flex-shrink: 0;
-        }
-        @keyframes xpFadeIn {
-          from { opacity: 0; transform: translateX(-16px); }
-          to   { opacity: 1; transform: translateX(0); }
-        }
-        .xp-animate {
-          animation: xpFadeIn 0.5s ease forwards;
-          opacity: 0;
-        }
-        .section-label {
-          font-family: var(--font-pixel, 'Press Start 2P', monospace);
-          font-size: 0.5rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: #22c55e;
-          opacity: 0.8;
-        }
-        .section-title {
-          font-family: var(--font-pixel, 'Press Start 2P', monospace);
-          line-height: 1.5;
-          margin: 0;
-        }
+        .xp-card { position:relative; padding:1.5rem; border-radius:14px; border:1px solid; transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s; }
+        .xp-card:hover { transform:translateX(6px); box-shadow:0 8px 32px rgba(34,197,94,0.08); border-color:rgba(34,197,94,0.3) !important; }
+        .xp-card-title  { font-family:var(--font-body,Syne,sans-serif); font-size:1rem; font-weight:700; letter-spacing:0.02em; margin:0 0 4px 0; }
+        .xp-card-place  { font-family:var(--font-body,Syne,sans-serif); font-size:0.8rem; font-weight:600; color:#22c55e; letter-spacing:0.04em; }
+        .xp-card-date   { display:inline-flex; align-items:center; justify-content:center; gap:6px; font-family:var(--font-body,Syne,sans-serif); font-size:0.72rem; font-weight:700; line-height:1; letter-spacing:0.04em; height:26px; padding:0 12px; border-radius:999px; border:1px solid rgba(34,197,94,0.4); color:#22c55e; background:rgba(34,197,94,0.1); white-space:nowrap; }
+        .xp-card-desc   { font-family:var(--font-body,Syne,sans-serif); font-size:0.85rem; line-height:1.75; margin:0; }
+        .xp-dot         { position:absolute; left:-1.85rem; top:1.6rem; width:12px; height:12px; border-radius:50%; background:#22c55e; box-shadow:0 0 10px rgba(34,197,94,0.6); flex-shrink:0; }
+        @keyframes xpFadeIn { from{opacity:0;transform:translateX(-16px)} to{opacity:1;transform:translateX(0)} }
+        .xp-animate { animation:xpFadeIn 0.5s ease forwards; opacity:0; }
+        .section-label { font-family:var(--font-pixel,'Press Start 2P',monospace); font-size:0.5rem; letter-spacing:0.12em; text-transform:uppercase; color:#22c55e; opacity:0.8; }
+        .section-title { font-family:var(--font-pixel,'Press Start 2P',monospace); line-height:1.5; margin:0; }
       `}</style>
 
       <section
@@ -159,7 +80,6 @@ export default function XP() {
           overflow: "hidden",
         }}
       >
-        {/* ── Diagonal line texture ─────────────────── */}
         <div
           style={{
             position: "absolute",
@@ -167,12 +87,10 @@ export default function XP() {
             pointerEvents: "none",
             zIndex: 0,
             backgroundImage: isDark
-              ? "repeating-linear-gradient(135deg, rgba(34,197,94,0.025) 0px, rgba(34,197,94,0.025) 1px, transparent 1px, transparent 48px)"
-              : "repeating-linear-gradient(135deg, rgba(34,197,94,0.05) 0px, rgba(34,197,94,0.05) 1px, transparent 1px, transparent 48px)",
+              ? "repeating-linear-gradient(135deg,rgba(34,197,94,0.025) 0px,rgba(34,197,94,0.025) 1px,transparent 1px,transparent 48px)"
+              : "repeating-linear-gradient(135deg,rgba(34,197,94,0.05) 0px,rgba(34,197,94,0.05) 1px,transparent 1px,transparent 48px)",
           }}
         />
-
-        {/* ── Right side glow blob ──────────────────── */}
         <div
           style={{
             position: "absolute",
@@ -182,20 +100,18 @@ export default function XP() {
             height: "400px",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%)",
+              "radial-gradient(circle,rgba(34,197,94,0.06) 0%,transparent 70%)",
             pointerEvents: "none",
             zIndex: 0,
           }}
         />
 
-        {/* ── Content ──────────────────────────────── */}
         <div style={{ position: "relative", zIndex: 1 }}>
-          {/* Header */}
           <div
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(20px)",
-              transition: "opacity 0.6s ease, transform 0.6s ease",
+              transition: "opacity 0.6s ease,transform 0.6s ease",
               marginBottom: "3rem",
             }}
           >
@@ -204,7 +120,7 @@ export default function XP() {
             </p>
             <h2
               className="section-title"
-              style={{ fontSize: "clamp(1rem, 3vw, 1.6rem)", color: textMain }}
+              style={{ fontSize: "clamp(1rem,3vw,1.6rem)", color: textMain }}
             >
               Experience
             </h2>
@@ -220,7 +136,6 @@ export default function XP() {
             />
           </div>
 
-          {/* Timeline */}
           <div
             style={{
               position: "relative",
@@ -229,7 +144,6 @@ export default function XP() {
               transition: "opacity 0.6s ease 0.2s",
             }}
           >
-            {/* Vertical line */}
             <div
               style={{
                 position: "absolute",
@@ -237,12 +151,10 @@ export default function XP() {
                 top: 0,
                 bottom: 0,
                 width: "2px",
-                background: `linear-gradient(to bottom, #22c55e, ${lineBg}, transparent)`,
+                background: `linear-gradient(to bottom,#22c55e,${lineBg},transparent)`,
                 borderRadius: "2px",
               }}
             />
-
-            {/* Cards */}
             <div
               style={{
                 display: "flex",
@@ -250,26 +162,23 @@ export default function XP() {
                 gap: "1.5rem",
               }}
             >
-              {xps.map((item, i) => (
+              {data.map((item, i) => (
                 <div
-                  key={`${item.title}-${i}`}
+                  key={item._id}
                   className="xp-animate"
                   style={{
                     animationDelay: `${i * 100}ms`,
                     position: "relative",
                   }}
                 >
-                  {/* Timeline dot */}
                   <div
                     className="xp-dot"
                     style={{ border: `2px solid ${dotBorder}` }}
                   />
-
                   <div
                     className="xp-card"
                     style={{ background: cardBg, borderColor: cardBorder }}
                   >
-                    {/* Top row */}
                     <div
                       style={{
                         display: "flex",
@@ -289,48 +198,15 @@ export default function XP() {
                         </h3>
                         <span className="xp-card-place">{item.place}</span>
                       </div>
-
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "flex-end",
-                          gap: "6px",
-                        }}
-                      >
-                        {/* Date */}
-                        <span className="xp-card-date">
-                          <BsCalendar3 style={{ fontSize: "0.6rem" }} />
-                          {item.start}
-                          <BsArrowRight
-                            style={{ fontSize: "0.5rem", opacity: 0.6 }}
-                          />
-                          {item.end}
-                        </span>
-                        {/* Type badge */}
-                        {/* <span
-                          className="xp-type-badge"
-                          style={{
-                            background:
-                              item.type === "job"
-                                ? "rgba(34,197,94,0.1)"
-                                : "rgba(99,102,241,0.1)",
-                            border: `1px solid ${item.type === "job" ? "rgba(34,197,94,0.3)" : "rgba(99,102,241,0.3)"}`,
-                            color: item.type === "job" ? "#22c55e" : "#818cf8",
-                            fontSize: "0.4rem",
-                          }}
-                        >
-                          {item.type === "job" ? (
-                            <BsBriefcaseFill style={{ fontSize: "0.5rem" }} />
-                          ) : (
-                            <BsBookFill style={{ fontSize: "0.5rem" }} />
-                          )}
-                          {item.type === "job" ? "Work" : "Education"}
-                        </span> */}
-                      </div>
+                      <span className="xp-card-date">
+                        <BsCalendar3 style={{ fontSize: "0.6rem" }} />
+                        {formatDate(item.start)}
+                        <BsArrowRight
+                          style={{ fontSize: "0.5rem", opacity: 0.6 }}
+                        />
+                        {item.end ? formatDate(item.end) : "Present"}
+                      </span>
                     </div>
-
-                    {/* Divider */}
                     <div
                       style={{
                         height: "1px",
@@ -338,8 +214,6 @@ export default function XP() {
                         marginBottom: "0.75rem",
                       }}
                     />
-
-                    {/* Description */}
                     <p className="xp-card-desc" style={{ color: textMuted }}>
                       {item.desc}
                     </p>
