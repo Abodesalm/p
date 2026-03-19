@@ -5,6 +5,7 @@ const ReviewSchema = new Schema(
     name: { type: String, required: true },
     content: { type: String, required: true },
     link: { type: String },
+    hidden: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

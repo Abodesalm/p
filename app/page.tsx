@@ -10,9 +10,25 @@ import { Skill } from "@/models/Skill";
 import { XP as XPModel } from "@/models/XP";
 import { Certificate } from "@/models/Certificate";
 import { Review } from "@/models/Review";
+import type { Metadata } from "next";
 
-// Revalidate every 60 seconds — instant for users, fresh every minute
-export const revalidate = 60;
+export const metadata: Metadata = {
+  title: {
+    absolute: "3bod Sa — Web Developer & Graphic Designer",
+  },
+  description:
+    "Abdurrahman Assalim — Full-stack web developer and graphic designer based in Damascus. Building clean, fast, and memorable digital experiences.",
+  openGraph: {
+    title: "3bod Sa — Web Developer & Graphic Designer",
+    description:
+      "Full-stack web developer and graphic designer based in Damascus. Explore my projects, skills, and experience.",
+    url: "https://3bod.sy",
+    type: "website",
+  },
+};
+
+// No revalidate — page is cached until explicitly revalidated via /api/revalidate
+export const dynamic = "force-static";
 
 const SECTION_ORDER: Record<string, number> = {
   web: 0,
@@ -25,22 +41,23 @@ const SECTION_ORDER: Record<string, number> = {
 export default async function HomePage() {
   await connectDB();
 
-  // All DB queries run in parallel — single round trip
   const [projects, skills, xps, certs, reviews] = await Promise.all([
-    Project.find().sort({ createdAt: -1 }).lean(),
-    Skill.find().lean(),
-    XPModel.find().sort({ createdAt: 1 }).lean(),
-    Certificate.find().lean(),
-    Review.find().lean(),
+    Project.find({ hidden: { $ne: true } })
+      .sort({ createdAt: -1 })
+      .lean(),
+    Skill.find({ hidden: { $ne: true } }).lean(),
+    XPModel.find({ hidden: { $ne: true } })
+      .sort({ createdAt: 1 })
+      .lean(),
+    Certificate.find({ hidden: { $ne: true } }).lean(),
+    Review.find({ hidden: { $ne: true } }).lean(),
   ]);
 
-  // Sort skills by section on the server
   const sortedSkills = [...skills].sort(
     (a, b) =>
       (SECTION_ORDER[a.section] ?? 99) - (SECTION_ORDER[b.section] ?? 99),
   );
 
-  // Serialize _id and dates (plain objects for client components)
   const serialize = (arr: any[]) => JSON.parse(JSON.stringify(arr));
 
   return (

@@ -46,6 +46,8 @@ import {
   FaDiscord,
   FaSteam,
   FaGlobe,
+  FaYoutube,
+  FaAndroid,
 } from "react-icons/fa";
 
 // ─── UI / layout icons ───────────────────────────────────────────────────────
@@ -123,6 +125,7 @@ export default function Icon({ i, className = "", style }: IconProps) {
   else if (i === "erd") return <BsDiagram3Fill {...p} />;
   else if (i === "ccna") return <BsWifi {...p} />;
   else if (i === "msoffice") return <BsFiles {...p} />;
+  else if (i === "android") return <FaAndroid {...p} />;
   // Language icons — text-based flags
   else if (i === "Ar")
     return (
@@ -178,6 +181,7 @@ export default function Icon({ i, className = "", style }: IconProps) {
   else if (i === "github") return <FaGithub {...p} />;
   else if (i === "discord") return <FaDiscord {...p} />;
   else if (i === "steam") return <FaSteam {...p} />;
+  else if (i === "youtube") return <FaYoutube {...p} />;
   else if (i === "website") return <FaGlobe {...p} />;
   // ── UI / navigation icons ───────────────────────────────────────
   else if (i === "home") return <RiHomeLine {...p} />;

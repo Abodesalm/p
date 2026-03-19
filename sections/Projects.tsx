@@ -3,12 +3,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import {
-  BsCalendar3,
-  BsArrowRight,
-  BsGithub,
-  BsBoxArrowUpRight,
-} from "react-icons/bs";
+import { BsArrowRight } from "react-icons/bs";
+import ProjectCard from "@/components/ProjectCard";
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
 
@@ -206,90 +202,16 @@ export default function Projects({ data }: Props) {
             }}
           >
             {data.map((p, i) => (
-              <div
+              <ProjectCard
                 key={p._id}
-                className="project-card proj-animate"
-                style={{
-                  background: cardBg,
-                  borderColor: cardBorder,
-                  animationDelay: `${i * 120}ms`,
-                }}
-              >
-                <div className="cover-wrapper">
-                  <img src={p.cover} alt={p.title} className="project-cover" />
-                  <div className="cover-overlay" />
-                </div>
-                <div
-                  style={{
-                    padding: "1.25rem",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
-                    flex: 1,
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      justifyContent: "space-between",
-                      gap: "0.5rem",
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    <h3 className="project-title" style={{ color: textMain }}>
-                      {p.title}
-                    </h3>
-                    <span className="project-date">
-                      <BsCalendar3 />
-                      {formatDate(p.date)}
-                    </span>
-                  </div>
-                  <div
-                    style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}
-                  >
-                    {p.tags?.map((tag: string) => (
-                      <span key={tag} className="project-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <p
-                    className="project-desc"
-                    style={{ color: textMuted, flex: 1 }}
-                  >
-                    {p.desc}
-                  </p>
-                  <div style={{ height: "1px", background: cardBorder }} />
-                  <div
-                    style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}
-                  >
-                    {p.action1 && (
-                      <a
-                        href={p.action1.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="action-btn primary"
-                      >
-                        <BsBoxArrowUpRight style={{ fontSize: "0.8rem" }} />
-                        {p.action1.label}
-                      </a>
-                    )}
-                    {p.action2 && (
-                      <a
-                        href={p.action2.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="action-btn ghost"
-                        style={{ color: textMuted }}
-                      >
-                        <BsGithub style={{ fontSize: "0.9rem" }} />
-                        {p.action2.label}
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
+                project={p}
+                index={i}
+                cardBg={cardBg}
+                cardBorder={cardBorder}
+                textMain={textMain}
+                textMuted={textMuted}
+                isDark={isDark}
+              />
             ))}
           </div>
 

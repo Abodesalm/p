@@ -9,16 +9,9 @@ const ProjectSchema = new Schema(
     type: { type: String },
     media: [{ type: String }],
     tags: [{ type: String }],
-
-    action1: {
-      label: String,
-      url: String,
-    },
-
-    action2: {
-      label: String,
-      url: String,
-    },
+    action1: { label: String, url: String },
+    action2: { label: String, url: String },
+    hidden: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

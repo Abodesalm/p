@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/admin", "/config"], // Paths you want to keep private
+      disallow: ["/dashboard", "/dashboard/", "/api/"],
     },
     sitemap: "https://3bod.sy/sitemap.xml",
   };

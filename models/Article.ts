@@ -6,7 +6,9 @@ const ArticleSchema = new Schema(
     content: { type: String, required: true },
     author: { type: String },
     cover: { type: String },
-    date: { type: Date },
+    date: { type: Date, default: Date.now },
+    hidden: { type: Boolean, default: false },
+    readTime: { type: Number }, // minutes, auto-calculated
   },
   { timestamps: true },
 );

@@ -8,6 +8,7 @@ const XPSchema = new Schema(
     desc: { type: String },
     place: { type: String },
     type: { type: String },
+    hidden: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

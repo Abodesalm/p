@@ -7,6 +7,7 @@ const SkillSchema = new Schema(
     section: { type: String, required: true },
     level: { type: String },
     color: { type: String },
+    hidden: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

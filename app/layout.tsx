@@ -6,6 +6,7 @@ import ToUp from "@/components/layout/ToUp";
 import Providers from "./Providers";
 import Footer from "@/sections/Footer";
 import type { Metadata } from "next";
+import PageLoader from "@/components/PageLoader";
 import { ToastContainer } from "react-toastify";
 import { Press_Start_2P, Syne } from "next/font/google";
 
@@ -20,44 +21,67 @@ const syne = Syne({
   variable: "--font-body",
 });
 
+const BASE = "https://3bod.sy";
+
 export const metadata: Metadata = {
-  title: "3bod Sa",
+  metadataBase: new URL(BASE),
+  title: {
+    default: "3bod Sa — Web Developer & Graphic Designer",
+    template: "%s | 3bod Sa",
+  },
   description:
-    "Web developer & Graphic designer based in Damascus. Building clean, fast, and memorable digital experiences.",
+    "Abdurrahman Assalim — Full-stack web developer and graphic designer based in Damascus. Building clean, fast, and memorable digital experiences.",
+  keywords: [
+    "web developer",
+    "full stack",
+    "Damascus",
+    "Syria",
+    "React",
+    "Next.js",
+    "graphic designer",
+    "3bod Sa",
+    "Abdurrahman Assalim",
+  ],
+  authors: [{ name: "Abdurrahman Assalim", url: BASE }],
+  creator: "Abdurrahman Assalim",
   openGraph: {
-    title: "Abod | Full Stack Developer",
-    description: "Explore my latest projects and technical expertise.",
-    url: "https://3bod.sy",
-    siteName: "3bod.sy",
-    /* images: [
-      {
-        url: "https://3bod.sy/img/.png", // Create a nice preview image
-        width: 1200,
-        height: 630,
-      },
-    ], */
-    locale: "en_US",
     type: "website",
+    locale: "en_US",
+    url: BASE,
+    siteName: "3bod Sa",
+    title: "3bod Sa — Web Developer & Graphic Designer",
+    description:
+      "Full-stack web developer and graphic designer based in Damascus. Explore my projects, articles, and skills.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "3bod Sa — Web Developer & Graphic Designer",
+    description:
+      "Full-stack web developer and graphic designer based in Damascus.",
+    creator: "@3bod_sa",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
   verification: {
     google: "nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7-H4",
-    //<meta name="google-site-verification" content="nyQLbW1HhSeoXB9WVEFuBghBV8mfw384OnFvphy7-H4" />
   },
 };
 
 export default async function Layout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang={`en`}
+      lang="en"
       className={`${pixel.variable} ${syne.variable}`}
       suppressHydrationWarning
     >
       <body>
         <Providers>
+          <PageLoader />
           <Navbar />
           <div className="w-full">{children}</div>
           <Footer />

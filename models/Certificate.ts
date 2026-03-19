@@ -5,6 +5,7 @@ const CertificateSchema = new Schema(
     title: { type: String, required: true },
     score: { type: String },
     date: { type: String },
+    hidden: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

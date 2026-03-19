@@ -5,6 +5,7 @@ const LinksSchema = new Schema(
     title: { type: String, required: true },
     url: { type: String, required: true },
     icon: { type: String },
+    hidden: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

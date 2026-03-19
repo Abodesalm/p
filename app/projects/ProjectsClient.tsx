@@ -3,23 +3,11 @@
 import { useState, useMemo } from "react";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
-import {
-  BsCalendar3,
-  BsGithub,
-  BsBoxArrowUpRight,
-  BsSearch,
-  BsX,
-} from "react-icons/bs";
+import { BsSearch, BsX } from "react-icons/bs";
 import Link from "next/link";
+import ProjectCard from "@/components/ProjectCard";
 
 const PAD = "clamp(1rem, 8vw, 10rem)";
-
-function formatDate(d: string) {
-  if (!d) return "";
-  const [y, m] = d.split("-");
-  if (!y || !m) return d;
-  return `${new Date(`${y}-${m}-01`).toLocaleString("default", { month: "short" })} ${y}`;
-}
 
 interface Project {
   _id: string;
@@ -547,153 +535,18 @@ export default function ProjectsClient({ projects }: Props) {
         {/* Grid */}
         <div className="projects-grid">
           {filtered.map((p, i) => (
-            <div
+            <ProjectCard
               key={p._id}
-              className="proj-card card-in"
-              style={{
-                background: cardBg,
-                borderColor: cardBorder,
-                animationDelay: `${i * 60}ms`,
-              }}
-            >
-              {/* Cover */}
-              <div className="cover-wrap">
-                {p.cover ? (
-                  <img src={p.cover} alt={p.title} className="proj-cover" />
-                ) : (
-                  <div
-                    style={{
-                      width: "100%",
-                      aspectRatio: "16/9",
-                      background: isDark
-                        ? "rgba(255,255,255,0.04)"
-                        : "rgba(0,0,0,0.04)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily:
-                          "var(--font-pixel,'Press Start 2P',monospace)",
-                        fontSize: "0.45rem",
-                        color: "#22c55e",
-                        opacity: 0.4,
-                      }}
-                    >
-                      no cover
-                    </span>
-                  </div>
-                )}
-                <div className="cover-overlay" />
-              </div>
-
-              {/* Body */}
-              <div
-                style={{
-                  padding: "1.25rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.75rem",
-                  flex: 1,
-                }}
-              >
-                {/* Title + date */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "space-between",
-                    gap: "0.5rem",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <h3 className="proj-title" style={{ color: textMain }}>
-                    {p.title}
-                  </h3>
-                  {p.date && (
-                    <span className="proj-date">
-                      <BsCalendar3 />
-                      {formatDate(p.date)}
-                    </span>
-                  )}
-                </div>
-
-                {/* Tags */}
-                {p.tags && p.tags.length > 0 && (
-                  <div
-                    style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}
-                  >
-                    {p.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className={`proj-tag${active.includes(tag) ? " highlighted" : ""}`}
-                        onClick={() => toggleTag(tag)}
-                        style={{ cursor: "pointer" }}
-                        title={`Filter by ${tag}`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Desc */}
-                {p.desc && (
-                  <p
-                    className="proj-desc"
-                    style={{ color: textMuted, flex: 1 }}
-                  >
-                    {p.desc}
-                  </p>
-                )}
-
-                {/* Divider */}
-                <div style={{ height: "1px", background: cardBorder }} />
-
-                {/* Actions */}
-                <div
-                  style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}
-                >
-                  {p.action1 && (
-                    <a
-                      href={p.action1.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="action-btn primary"
-                    >
-                      <BsBoxArrowUpRight style={{ fontSize: "0.75rem" }} />
-                      {p.action1.label}
-                    </a>
-                  )}
-                  {p.action2 && (
-                    <a
-                      href={p.action2.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="action-btn ghost"
-                      style={{ color: textMuted }}
-                    >
-                      <BsGithub style={{ fontSize: "0.85rem" }} />
-                      {p.action2.label}
-                    </a>
-                  )}
-                  {!p.action1 && !p.action2 && (
-                    <span
-                      style={{
-                        fontFamily: "var(--font-body,Syne,sans-serif)",
-                        fontSize: "0.72rem",
-                        color: textMuted,
-                        opacity: 0.5,
-                      }}
-                    >
-                      Private project
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
+              project={p}
+              index={i}
+              cardBg={cardBg}
+              cardBorder={cardBorder}
+              textMain={textMain}
+              textMuted={textMuted}
+              isDark={isDark}
+              highlightedTags={active}
+              onTagClick={toggleTag}
+            />
           ))}
         </div>
       </div>

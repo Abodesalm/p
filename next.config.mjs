@@ -1,13 +1,13 @@
-/** @type {import('next'.NextConfig)} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["127.0.0.1", "zed-games-api.onrender.com"],
+    remotePatterns: [
+      { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "http", hostname: "127.0.0.1" },
+    ],
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 };
 
